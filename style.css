@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body {
+    font-family: 'Roboto';
+    background-color: #EEF9BF;
+}
+
+.topo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 170px;
+}
+
+h1 {
+    color: #75B79E;
+    font-size: 56px;
+}
+
+.content {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 17%;
+    margin-right: 10%;
+}
+
+.content img {
+    width: 100px;
+    height: 100px;
+}
+
+/* flip card */
+
+.card {
+    width: 117px;
+    height: 146px;
+    margin-right: 34px;
+    margin-bottom: 34px;
+}
+
+.face {
+    width: 117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+.back-face {
+    transform: rotateY(180deg);
+}
+
+.back-face.flipped {
+    transform: rotateY(0deg);
+}
+
+.front-face.flipped {
+    transform: rotateY(-180deg);
+}
+
+@media (max-width: 640px) {
+    .topo {
+        height: 150px;
+    }
+
+    .content {
+        width: 170px;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+}
