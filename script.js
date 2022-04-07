@@ -36,7 +36,7 @@ function addCard(qtdCartas) {
 
     for (let j = 0; j < randomCards.length; j++) {
         lista.innerHTML += `
-        <div class="card" onclick="chooseCard(this)">
+        <div class="card" type"button" onclick="chooseCard(this)">
                 <div class="front-face face">
                     <img class="item" src="images/front.png">
                 </div>
@@ -91,31 +91,34 @@ function chooseCard(elemento) {
             }, 1000)
         }
     }
+}
 
-    function fimDoJogo() {
-        let lista = document.querySelectorAll("li div");
+function fimDoJogo() {
+    let lista = document.querySelectorAll("li div");
 
-        if (acertou == lista.length / 6) {
-            alert(`Você ganhou em ${escolhas} jogadas!`);
-
-            setTimeout(function () {
-                playAgain();
-            }, 1500)
-        }
-    }
-
-    function playAgain() {
-        let check = prompt("Você gostaria de jogar novamente? (sim ou não)");
-
-        if (check === 'sim') {
-            alert("Vamos lá!");
-            setTimeout(function () {
-                startGame();
-            }, 1500)
-        } else if (check === 'não') {
-            alert("Volte sempre!")
-        } else {
+    if (acertou == lista.length / 6) {
+        alert(`Você ganhou em ${escolhas} jogadas!`);
+        acertou = 0;
+        escolhas = 0;
+        setTimeout(function () {
             playAgain();
-        }
+        }, 1500)
     }
 }
+
+function playAgain() {
+    let check = prompt("Você gostaria de jogar novamente? (sim ou não)");
+
+    if (check === 'sim') {
+        alert("Vamos lá!");
+        setTimeout(function () {
+            startGame();
+        }, 1500)
+    } else if (check === 'não') {
+        alert("Volte sempre!")
+    } else {
+        playAgain();
+    }
+}
+
+
