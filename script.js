@@ -9,6 +9,7 @@ let elemento2;
 let qtdCartas;
 
 function startGame() {
+    resetarCartas();
     let qtdCartas = prompt("Com quantas cartas você quer jogar? (Informe um número par entre 4 e 14)");
     if (qtdCartas % 2 !== 0 || qtdCartas < 4 || qtdCartas > 14) {
         alert("Por favor, selecione um número de cartas par entre 4 e 14")
@@ -45,6 +46,11 @@ function addCard(qtdCartas) {
             </div>
         `
     }
+}
+
+function resetarCartas() {
+    let lista = document.querySelector("lI");
+    lista.innerHTML = "";
 }
 
 function embaralhar() {
@@ -89,11 +95,27 @@ function chooseCard(elemento) {
     function fimDoJogo() {
         let lista = document.querySelectorAll("li div");
 
-        console.log(acertou)
-        console.log(lista.length / 6)
-
         if (acertou == lista.length / 6) {
-            alert(`Você ganhou em ${escolhas} rodadas!`);
+            alert(`Você ganhou em ${escolhas} jogadas!`);
+
+            setTimeout(function () {
+                playAgain();
+            }, 1500)
+        }
+    }
+
+    function playAgain() {
+        let check = prompt("Você gostaria de jogar novamente? (sim ou não)");
+
+        if (check === 'sim') {
+            alert("Vamos lá!");
+            setTimeout(function () {
+                startGame();
+            }, 1500)
+        } else if (check === 'não') {
+            alert("Volte sempre!")
+        } else {
+            playAgain();
         }
     }
 }
