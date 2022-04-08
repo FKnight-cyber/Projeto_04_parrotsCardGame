@@ -115,6 +115,7 @@ h1 {
 
 @media (max-width: 640px) {
     .topo {
+        margin-top: 40px;
         height: 150px;
     }
 

@@ -117,7 +117,7 @@ function fimDoJogo() {
     let lista = document.querySelectorAll("li div");
 
     if (acertou == lista.length / 6) {
-        alert(`Você ganhou em ${escolhas} jogadas!`);
+        alert(`Você ganhou em ${escolhas} jogadas e levou ${contador} segundos!`);
         ganhou = true;
         acertou = 0;
         escolhas = 0;
