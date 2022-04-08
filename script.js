@@ -6,6 +6,8 @@ let click2;
 let escolhas = 0;
 let acertou = 0;
 let elemento2;
+let elementoArmazenado;
+let checkElemento;
 let qtdCartas;
 let lastClick = 0;
 let delay = 700;
@@ -70,16 +72,22 @@ function chooseCard(elemento) {
         return;
     } else {
         flipCard(elemento);
-        escolhas++;
+        console.log(elemento.onclick = "#");
 
         if (click1 === undefined) {
+            escolhas++;
             click1 = elemento.children[1].querySelector(".game").src;
 
             elemento2 = elemento.querySelectorAll(".face");
+            checkElemento = elemento.children;
+            elementoArmazenado = elemento;
         } else {
             click2 = elemento.children[1].querySelector(".game").src;
-            if (click1 == click2) {
+            if (click1 == click2 && elemento.children !== checkElemento) {
+                escolhas++;
                 acertou++
+                elemento.onclick = "#";
+                elementoArmazenado.onclick = "#";
                 click1 = undefined;
                 click2 = undefined;
                 setTimeout(function () {
@@ -87,6 +95,7 @@ function chooseCard(elemento) {
                 }, 1000);
             } else if (click1 != click2) {
                 setTimeout(function () {
+                    escolhas++;
                     elemento2[0].classList.remove("flipped");
                     elemento2[1].classList.remove("flipped");
                     elemento.children[0].classList.remove("flipped");
@@ -98,6 +107,8 @@ function chooseCard(elemento) {
             }
         }
     }
+    console.log(acertou);
+    console.log(escolhas);
     lastClick = Date.now();
 }
 
