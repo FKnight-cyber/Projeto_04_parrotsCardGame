@@ -10,12 +10,16 @@ let elementoArmazenado;
 let checkElemento;
 let qtdCartas;
 let lastClick = 0;
-let delay = 700;
+let delay = 1000;
 let idInterval;
 let contador = 0;
 let ganhou = false;
 
+let audio = new Audio("audio/title.mp3");
+
+
 timer();
+
 
 function startGame() {
     resetarCartas();
@@ -72,7 +76,7 @@ function flipCard(elemento) {
 }
 
 function chooseCard(elemento) {
-
+    audio.play();
     if (lastClick >= (Date.now() - delay)) {
         return;
     } else {
@@ -165,6 +169,4 @@ function formatTime(seconds) {
     ]
         .join(":")
         .replace(/\b(\d)\b/g, "0$1")
-}
-
-
+} S
