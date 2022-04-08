@@ -11,6 +11,11 @@ let checkElemento;
 let qtdCartas;
 let lastClick = 0;
 let delay = 700;
+let idInterval;
+let contador = 0;
+let ganhou = false;
+
+timer();
 
 function startGame() {
     resetarCartas();
@@ -72,8 +77,6 @@ function chooseCard(elemento) {
         return;
     } else {
         flipCard(elemento);
-        console.log(elemento.onclick = "#");
-
         if (click1 === undefined) {
             escolhas++;
             click1 = elemento.children[1].querySelector(".game").src;
@@ -85,14 +88,11 @@ function chooseCard(elemento) {
             click2 = elemento.children[1].querySelector(".game").src;
             if (click1 == click2 && elemento.children !== checkElemento) {
                 escolhas++;
-                acertou++
+                acertou++;
                 elemento.onclick = "#";
                 elementoArmazenado.onclick = "#";
                 click1 = undefined;
                 click2 = undefined;
-                setTimeout(function () {
-                    fimDoJogo();
-                }, 1000);
             } else if (click1 != click2) {
                 setTimeout(function () {
                     escolhas++;
@@ -107,8 +107,9 @@ function chooseCard(elemento) {
             }
         }
     }
-    console.log(acertou);
-    console.log(escolhas);
+    setTimeout(function () {
+        fimDoJogo();
+    }, 1000);
     lastClick = Date.now();
 }
 
@@ -117,6 +118,7 @@ function fimDoJogo() {
 
     if (acertou == lista.length / 6) {
         alert(`Você ganhou em ${escolhas} jogadas!`);
+        ganhou = true;
         acertou = 0;
         escolhas = 0;
         setTimeout(function () {
@@ -126,11 +128,14 @@ function fimDoJogo() {
 }
 
 function playAgain() {
+    ganhou = false;
     let check = prompt("Você gostaria de jogar novamente? (sim ou não)");
 
     if (check === 'sim') {
         alert("Vamos lá!");
         setTimeout(function () {
+            contador = 0;
+            timer();
             startGame();
         }, 1500)
     } else if (check === 'não') {
@@ -138,6 +143,28 @@ function playAgain() {
     } else {
         playAgain();
     }
+}
+
+function timer() {
+    idInterval = setInterval(incrementar, 1000);
+}
+
+function incrementar() {
+    if (ganhou === true) {
+        clearInterval(idInterval);
+    } else {
+        contador++;
+        document.querySelector(".timer").innerHTML = formatTime(contador);
+    }
+}
+
+function formatTime(seconds) {
+    return [
+        parseInt(seconds / 60 % 60),
+        parseInt(seconds % 60)
+    ]
+        .join(":")
+        .replace(/\b(\d)\b/g, "0$1")
 }
 
 
