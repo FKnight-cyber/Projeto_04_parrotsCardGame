@@ -7,6 +7,8 @@ let escolhas = 0;
 let acertou = 0;
 let elemento2;
 let qtdCartas;
+let lastClick = 0;
+let delay = 700;
 
 function startGame() {
     resetarCartas();
@@ -63,34 +65,40 @@ function flipCard(elemento) {
 }
 
 function chooseCard(elemento) {
-    flipCard(elemento);
-    escolhas++;
 
-    if (click1 === undefined) {
-        click1 = elemento.children[1].querySelector(".game").src;
-
-        elemento2 = elemento.querySelectorAll(".face");
+    if (lastClick >= (Date.now() - delay)) {
+        return;
     } else {
-        click2 = elemento.children[1].querySelector(".game").src;
-        if (click1 == click2) {
-            acertou++
-            click1 = undefined;
-            click2 = undefined;
-            setTimeout(function () {
-                fimDoJogo();
-            }, 1000);
-        } else if (click1 != click2) {
-            setTimeout(function () {
-                elemento2[0].classList.remove("flipped");
-                elemento2[1].classList.remove("flipped");
-                elemento.children[0].classList.remove("flipped");
-                elemento.children[1].classList.remove("flipped");
+        flipCard(elemento);
+        escolhas++;
 
+        if (click1 === undefined) {
+            click1 = elemento.children[1].querySelector(".game").src;
+
+            elemento2 = elemento.querySelectorAll(".face");
+        } else {
+            click2 = elemento.children[1].querySelector(".game").src;
+            if (click1 == click2) {
+                acertou++
                 click1 = undefined;
                 click2 = undefined;
-            }, 1000)
+                setTimeout(function () {
+                    fimDoJogo();
+                }, 1000);
+            } else if (click1 != click2) {
+                setTimeout(function () {
+                    elemento2[0].classList.remove("flipped");
+                    elemento2[1].classList.remove("flipped");
+                    elemento.children[0].classList.remove("flipped");
+                    elemento.children[1].classList.remove("flipped");
+
+                    click1 = undefined;
+                    click2 = undefined;
+                }, 1000)
+            }
         }
     }
+    lastClick = Date.now();
 }
 
 function fimDoJogo() {
