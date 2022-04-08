@@ -45,7 +45,7 @@ function addCard(qtdCartas) {
 
     for (let j = 0; j < randomCards.length; j++) {
         lista.innerHTML += `
-        <div class="card" type"button" onclick="chooseCard(this)">
+        <div class="card" onclick="chooseCard(this)">
                 <div class="front-face face">
                     <img class="item" src="images/front.png">
                 </div>

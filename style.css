@@ -6,13 +6,16 @@
 
 ul {
     list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
 }
 
-li {
+ul,
+li,
+content,
+topo {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 body {
@@ -21,12 +24,8 @@ body {
 }
 
 .topo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 170px;
-
     position: relative;
 }
 
@@ -38,10 +37,7 @@ h1 {
 
 .content {
     width: 75%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-left: 17%;
+    margin-left: 14%;
     margin-right: 10%;
 }
 
