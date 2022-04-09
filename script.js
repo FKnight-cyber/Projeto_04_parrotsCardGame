@@ -98,16 +98,20 @@ function chooseCard(elemento) {
                 click1 = undefined;
                 click2 = undefined;
             } else if (click1 != click2) {
-                setTimeout(function () {
-                    escolhas++;
-                    elemento2[0].classList.remove("flipped");
-                    elemento2[1].classList.remove("flipped");
-                    elemento.children[0].classList.remove("flipped");
-                    elemento.children[1].classList.remove("flipped");
+                if (lastClick >= (Date.now() - delay)) {
+                    return;
+                } else {
+                    setTimeout(function () {
+                        escolhas++;
+                        elemento2[0].classList.remove("flipped");
+                        elemento2[1].classList.remove("flipped");
+                        elemento.children[0].classList.remove("flipped");
+                        elemento.children[1].classList.remove("flipped");
 
-                    click1 = undefined;
-                    click2 = undefined;
-                }, 1000)
+                        click1 = undefined;
+                        click2 = undefined;
+                    }, 1000)
+                }
             }
         }
     }
